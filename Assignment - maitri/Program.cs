@@ -160,6 +160,55 @@ namespace maitri
             
             IWebElement switchwindowreturn = driver.FindElement(By.XPath("//a[text()='Practice']"));
         }
+        //switchtab
+        public static void switchTab()
+        {
+            IWebElement switchtab = Driver.FindElement(By.Id("opentab"));
+            switchtab.Click();
+            Thread.Sleep(3000);
+            Driver.SwitchTo().Window(Driver.WindowHandles[1]);
+            Driver.Close();
+            Driver.SwitchTo().Window(Driver.WindowHandles[0]);
+        }
+
+        //Alertexample
+
+        public static void alertExample()
+        {
+            IWebElement alertbox = Driver.FindElement(By.Id("name"));
+            alertbox.Click();
+            alertbox.SendKeys("maitri");
+            Thread.Sleep(4000);
+            IWebElement alertbutton = Driver.FindElement(By.Id("alertbtn"));
+            alertbutton.Click();
+            Thread.Sleep(2000);
+            Driver.SwitchTo().Alert().Accept();
+        }
+
+        public static void webtable()
+        {
+            IWebElement wtable = Driver.FindElement(By.Id("product"));
+            wtable.Click();
+            Actions actions = new Actions(Driver);
+            actions.SendKeys(OpenQA.Selenium.Keys.End).Build().Perform();
+
+
+        }
+
+
+        public static void hover()
+        {
+            //IWebElement hoverel = Driver.FindElement(By.Id("mousehover"));
+            var element = Driver.FindElement(By.Id("mousehover"));
+            Actions action = new Actions(Driver);
+            action.MoveToElement(element).Perform();           
+            Thread.Sleep(2000);
+            IWebElement Top = Driver.FindElement(By.XPath("//a[@href='#top']"));
+            action.MoveToElement(element).Perform();
+            Top.Click();
+            Thread.Sleep(2000);
+
+        }
 
     }
 }
